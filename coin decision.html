@@ -3,83 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Decision Coin</title>
+    <title>Pure HTML Decider</title>
     <style>
         body {
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: #121212;
-            color: white;
+            background: #f4f4f9;
         }
-        .card {
-            background: #1e1e1e;
-            padding: 2rem;
+        .decider-box {
+            background: white;
+            padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            width: 300px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             text-align: center;
+            width: 250px;
         }
-        textarea {
-            width: 100%;
-            height: 80px;
-            background: #2d2d2d;
-            border: 1px solid #444;
-            border-radius: 10px;
-            color: white;
-            padding: 10px;
-            margin: 15px 0;
-            box-sizing: border-box;
-            resize: none;
+        .window {
+            height: 40px;
+            overflow: hidden;
+            border: 2px solid #333;
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+            background: #fff;
         }
-        button {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: none;
-            background: #007bff;
-            color: white;
+        .slot-machine {
+            display: flex;
+            flex-direction: column;
+            animation: scroll 0.5s infinite linear;
+        }
+        .slot-machine:active {
+            animation-play-state: paused;
+        }
+        .option {
+            height: 40px;
+            line-height: 40px;
             font-weight: bold;
-            cursor: pointer;
+            color: #555;
         }
-        button:active { transform: scale(0.98); }
-        #result {
-            margin-top: 20px;
-            font-size: 1.4rem;
-            min-height: 1.5em;
-            color: #00ffcc;
+        @keyframes scroll {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-160px); }
+        }
+        .instruction {
+            font-size: 0.8rem;
+            color:#888;
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h2 style="margin:0">The Decider</h2>
-    <textarea id="input" placeholder="Option 1, Option 2, Option 3..."></textarea>
-    <button onclick="decide()">Pick for me</button>
-    <div id="result"></div>
+<div class="decider-box">
+    <h3>The Decision Wheel</h3>
+    <p class="instruction">Click and HOLD the box to pick!</p>
+    
+    <div class="window">
+        <div class="slot-machine">
+            <div class="option">YES</div>
+            <div class="option">NO</div>
+            <div class="option">MAYBE</div>
+            <div class="option">LATER</div>
+            <div class="option">YES</div>
+        </div>
+    </div>
+
+    <p style="font-size: 0.7rem;">(No JavaScript Version)</p>
 </div>
-
-<script>
-    function decide() {
-        const val = document.getElementById('input').value;
-        const res = document.getElementById('result');
-        const list = val.split(',').map(i => i.trim()).filter(i => i !== "");
-
-        if (list.length < 2) {
-            res.innerText = "Need 2+ options";
-            return;
-        }
-
-        res.innerText = "...";
-        setTimeout(() => {
-            res.innerText = list[Math.floor(Math.random() * list.length)];
-        }, 300);
-    }
-</script>
 
 </body>
 </html>
