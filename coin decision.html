@@ -3,75 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pure HTML Decider</title>
+    <title>Minimalist Decider</title>
     <style>
         body {
-            font-family: sans-serif;
+            font-family: monospace;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: #f4f4f9;
-        }
-        .decider-box {
             background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            color: black;
+        }
+        .container {
+            border: 2px solid black;
+            padding: 20px;
+            width: 200px;
             text-align: center;
-            width: 250px;
         }
         .window {
-            height: 40px;
+            height: 50px;
             overflow: hidden;
-            border: 2px solid #333;
-            border-radius: 8px;
+            border: 2px solid black;
             margin: 20px 0;
-            position: relative;
-            background: #fff;
+            cursor: pointer;
+            user-select: none;
         }
-        .slot-machine {
+        .slot {
             display: flex;
             flex-direction: column;
-            animation: scroll 0.5s infinite linear;
+            animation: move 0.1s infinite linear;
         }
-        .slot-machine:active {
+        .window:active .slot {
             animation-play-state: paused;
+            background: black;
+            color: white;
         }
-        .option {
-            height: 40px;
-            line-height: 40px;
+        .opt {
+            height: 50px;
+            line-height: 50px;
+            font-size: 20px;
             font-weight: bold;
-            color: #555;
         }
-        @keyframes scroll {
+        @keyframes move {
             0% { transform: translateY(0); }
-            100% { transform: translateY(-160px); }
-        }
-        .instruction {
-            font-size: 0.8rem;
-            color:#888;
+            100% { transform: translateY(-200px); }
         }
     </style>
 </head>
 <body>
 
-<div class="decider-box">
-    <h3>The Decision Wheel</h3>
-    <p class="instruction">Click and HOLD the box to pick!</p>
+<div class="container">
+    <h1 style="font-size: 18px; margin: 0;">DECIDER</h1>
+    <p style="font-size: 10px;">HOLD TO STOP</p>
     
     <div class="window">
-        <div class="slot-machine">
-            <div class="option">YES</div>
-            <div class="option">NO</div>
-            <div class="option">MAYBE</div>
-            <div class="option">LATER</div>
-            <div class="option">YES</div>
+        <div class="slot">
+            <div class="opt">YES</div>
+            <div class="opt">NO</div>
+            <div class="opt">MAYBE</div>
+            <div class="opt">LATER</div>
+            <div class="opt">YES</div>
         </div>
     </div>
-
-    <p style="font-size: 0.7rem;">(No JavaScript Version)</p>
 </div>
 
 </body>
